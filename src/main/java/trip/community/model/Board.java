@@ -7,11 +7,11 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "board")
-public class board extends BaseTime {
+public class Board extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long boardId;
 
     private String title;
 
