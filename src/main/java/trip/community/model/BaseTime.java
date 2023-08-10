@@ -1,6 +1,7 @@
 
 package trip.community.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.MappedSuperclass;
 import lombok.Getter;
@@ -17,6 +18,7 @@ import java.time.ZonedDateTime;
 @EntityListeners(AuditingEntityListener.class)
 public abstract class BaseTime {
 
+    @Column(updatable = false)
     @CreatedDate
     private ZonedDateTime createdAt;
 
