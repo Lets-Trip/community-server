@@ -1,6 +1,20 @@
+server:
+  port: 8080
+
 spring:
   datasource:
-    url: jdbc:mysql:lets-trip-db.cprq7tgal4rf.us-east-1.rds.amazonaws.com:3306/community
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://lets-trip-db.cprq7tgal4rf.us-east-1.rds.amazonaws.com:3306/community
     username: letstrip
     password: qwer1234
-    driver-class-name: org.mariadb.jdbc.Driver
+
+
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+#        dialect: org.hibernate.dialect.MariaDB103Dialect
+
