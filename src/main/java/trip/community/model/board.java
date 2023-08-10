@@ -1,13 +1,12 @@
 package trip.community.model;
 
-
 import jakarta.persistence.*;
-
 import java.time.ZonedDateTime;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "board")
-
 public class board extends BaseTime {
 
     @Id
@@ -32,5 +31,4 @@ public class board extends BaseTime {
 
     private ZonedDateTime startTime;
     private ZonedDateTime endTime;
-
 }

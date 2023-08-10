@@ -1,3 +1,4 @@
+
 package trip.community.model;
 
 import jakarta.persistence.EntityListeners;
