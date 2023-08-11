@@ -8,6 +8,8 @@ import trip.community.dto.BoardRequestDTO;
 import trip.community.dto.BoardResponseDTO;
 import trip.community.service.BoardService;
 
+import java.util.List;
+
 import static trip.community.global.config.ServerConfig.CURRENT_API_URI;
 
 @RestController
@@ -16,6 +18,15 @@ import static trip.community.global.config.ServerConfig.CURRENT_API_URI;
 public class BoardController {
 
     private final BoardService boardService;
+
+    @GetMapping("/boards")
+    public ResponseEntity<List<BoardResponseDTO>> getBoardList(){
+        List<BoardResponseDTO> boardRes = boardService.findBoardList();
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(boardRes);
+    }
 
     @GetMapping("/boards/{boardId}")
     public ResponseEntity<BoardResponseDTO> getBoard(
@@ -27,6 +38,7 @@ public class BoardController {
                 .status(HttpStatus.OK)
                 .body(boardRes);
     }
+
     @PostMapping("/boards")
     public ResponseEntity<BoardResponseDTO> createBoard(
             @RequestBody BoardRequestDTO boardReq
