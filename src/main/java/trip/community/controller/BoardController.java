@@ -50,6 +50,18 @@ public class BoardController {
                 .body(boardRes);
     }
 
+    @PutMapping("/boards/{boardId}")
+    public ResponseEntity<BoardResponseDTO> updateBoard(
+            @PathVariable Long boardId,
+            @RequestBody BoardRequestDTO boardReq
+    )
+    {
+        BoardResponseDTO boardRes = boardService.update(boardId, boardReq);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(boardRes);
+    }
+
     @GetMapping
     public ResponseEntity<String> test(){
         return ResponseEntity
