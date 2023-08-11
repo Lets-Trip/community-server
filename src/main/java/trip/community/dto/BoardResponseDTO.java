@@ -12,7 +12,7 @@ public class BoardResponseDTO {
     private String content;
     private String region;
 
-    private String ImageUrl;
+    private String imageUrl;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

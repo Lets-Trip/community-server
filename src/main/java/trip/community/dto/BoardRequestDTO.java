@@ -17,7 +17,7 @@ public class BoardRequestDTO {
     private String content;
     private String region;
 
-    private String ImageUrl;
+    private String imageUrl;
 //
 //    private ZonedDateTime startTime;
 //    private ZonedDateTime endTime;

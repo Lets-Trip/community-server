@@ -2,7 +2,6 @@ package trip.community.model;
 
 import jakarta.persistence.*;
 
-import java.awt.*;
 import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -34,13 +33,13 @@ public class Board extends BaseTime {
     @Column(columnDefinition = "varchar(20)")
     private String region;
 
-    private String ImageUrl;
+    private String imageUrl;
 
-    public void setBoard(String title, String content, String region, String ImageUrl){
+    public void setBoard(String title, String content, String region, String imageUrl){
         this.title = title;
         this.content = content;
         this.region = region;
-        this.ImageUrl = ImageUrl;
+        this.imageUrl = imageUrl;
     }
 
     @Builder.Default
