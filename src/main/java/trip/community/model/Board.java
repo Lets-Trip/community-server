@@ -5,9 +5,16 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Builder;
+import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
 
 @Entity
+@Getter
+@Builder
+@EntityListeners(AuditingEntityListener.class)
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "board")
 public class Board extends BaseTime {
 

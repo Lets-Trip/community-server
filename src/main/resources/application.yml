@@ -18,3 +18,12 @@ spring:
         default_batch_fetch_size: 100
 #        dialect: org.hibernate.dialect.MariaDB103Dialect
 
+logging:
+  level:
+    root: info
+    org:
+      hibernate:
+        SQL: info
+        type:
+          descriptor:
+            sql: info
