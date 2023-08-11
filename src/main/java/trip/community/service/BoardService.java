@@ -15,6 +15,12 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
+    @Transactional(readOnly = true)
+    public BoardResponseDTO findBoard(Long boardId){
+        Board board = boardRepository.findById(boardId).orElseThrow(() -> new RuntimeException("Can't not find board"));
+        BoardResponseDTO resDTO = BoardMapper.INSTANCE.toBoardResponseDTO(board);
+        return resDTO;
+    }
     @Transactional
     public BoardResponseDTO create(BoardRequestDTO req){
         Board board = req.toBoardEntity();

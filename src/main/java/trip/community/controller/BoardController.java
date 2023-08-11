@@ -17,14 +17,22 @@ public class BoardController {
 
     private final BoardService boardService;
 
-    @PostMapping("/boards")
+    @GetMapping("/boards/{boardId}")
     public ResponseEntity<BoardResponseDTO> getBoard(
+            @PathVariable Long boardId
+    )
+    {
+        BoardResponseDTO boardRes = boardService.findBoard(boardId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(boardRes);
+    }
+    @PostMapping("/boards")
+    public ResponseEntity<BoardResponseDTO> createBoard(
             @RequestBody BoardRequestDTO boardReq
             ){
 
         BoardResponseDTO boardRes = boardService.create(boardReq);
-
-
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(boardRes);
