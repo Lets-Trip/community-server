@@ -9,8 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,19 +18,11 @@ import java.time.ZonedDateTime;
 public abstract class BaseTime {
 
     @NotNull
-    private ZonedDateTime createdAt;
+    @CreatedDate
+    @Column(updatable = false)
+    private LocalDateTime createdAt;
 
     @NotNull
-    private ZonedDateTime updatedAt;
-
-    @PrePersist
-    public void prePersist(){
-        this.createdAt = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
-        this.updatedAt = ZonedDateTime.now(ZoneId.of("Asis/Seoul"));
-    }
-    @PreUpdate
-    public void preUpdate(){
-        this.updatedAt = ZonedDateTime.now(ZoneId.of("Asia/Seoul"));
-    }
-
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
 }

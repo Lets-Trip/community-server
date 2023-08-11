@@ -1,9 +1,11 @@
 package trip.community.model;
 
 import jakarta.persistence.*;
-import java.time.ZonedDateTime;
+
+import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import lombok.Builder;
 
 @Entity
 @Table(name = "board")
@@ -26,9 +28,12 @@ public class Board extends BaseTime {
 
     private String ImageUrl;
 
-    private Long views;
-    private Long likeCnt;
+    @Builder.Default
+    private Long views = 0L;
 
-    private ZonedDateTime startTime;
-    private ZonedDateTime endTime;
+    @Builder.Default
+    private Long likeCnt= 0L;
+
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
 }
