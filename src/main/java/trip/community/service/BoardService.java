@@ -9,7 +9,10 @@ import trip.community.dto.BoardResponseDTO;
 import trip.community.mapper.BoardMapper;
 import trip.community.model.Board;
 import trip.community.repository.BoardRepository;
+import java.time.format.DateTimeFormatter;
 
+
+import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
 
@@ -33,15 +36,18 @@ public class BoardService {
     }
 
     @Transactional
-    public BoardResponseDTO create(BoardRequestDTO req){
-        Board board = req.toBoardEntity();
+    public BoardResponseDTO create(BoardRequestDTO.boardReq req){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        LocalDateTime startTime = LocalDateTime.parse(req.getStartTime(), formatter);
+        LocalDateTime endTime = LocalDateTime.parse(req.getEndTime(), formatter);
+        Board board = req.toBoardEntity(startTime, endTime);
         Board res = boardRepository.save(board);
         BoardResponseDTO resDTO = BoardMapper.INSTANCE.toBoardResponseDTO(res);
         return resDTO;
     }
 
     @Transactional
-    public BoardResponseDTO update(Long boardId,BoardRequestDTO req){
+    public BoardResponseDTO update(Long boardId,BoardRequestDTO.boardReq req){
         //Board board = req.toBoardEntity();
         Board board = boardRepository.findById(boardId).orElseThrow(() -> new RuntimeException("board Not Found"));
         board.setBoard(req.getTitle(), req.getContent(), req.getRegion(), req.getImageUrl());
