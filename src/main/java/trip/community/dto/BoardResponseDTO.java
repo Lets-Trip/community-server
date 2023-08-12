@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BoardResponseDTO {
+    private Long boardId;
     private String title;
     private String content;
     private String region;
