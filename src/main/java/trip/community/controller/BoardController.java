@@ -41,9 +41,12 @@ public class BoardController {
 
     @PostMapping("/boards")
     public ResponseEntity<BoardResponseDTO> createBoard(
-            @RequestBody BoardRequestDTO boardReq
+            @RequestBody BoardRequestDTO.boardReq boardReq
             ){
 
+
+        System.out.println(boardReq.getStartTime());
+        System.out.println(boardReq.getEndTime());
         BoardResponseDTO boardRes = boardService.create(boardReq);
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -53,7 +56,7 @@ public class BoardController {
     @PutMapping("/boards/{boardId}")
     public ResponseEntity<BoardResponseDTO> updateBoard(
             @PathVariable Long boardId,
-            @RequestBody BoardRequestDTO boardReq
+            @RequestBody BoardRequestDTO.boardReq boardReq
     )
     {
         BoardResponseDTO boardRes = boardService.update(boardId, boardReq);
