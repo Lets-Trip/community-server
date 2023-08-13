@@ -3,6 +3,7 @@ package trip.community.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +26,7 @@ public class BoardReviewDTO {
         private String content;
         private String region;
 
-        private String imageUrl;
+        private List<String> imageUrl;
 
         //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
         //private LocalDateTime startTime;
@@ -48,7 +49,7 @@ public class BoardReviewDTO {
         private String content;
         private String region;
 
-        private String imageUrl;
+        private List<String> imageUrl;
 
         @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
         private LocalDateTime createdAt;
