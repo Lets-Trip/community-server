@@ -13,9 +13,9 @@ import java.time.LocalDateTime;
 public interface BoardMapper {
     BoardMapper INSTANCE = Mappers.getMapper(BoardMapper.class);
 
-    @Mapping(target="startTime", source="startTime")
-    @Mapping(target="endTime", source="endTime")
-    Board toBoardEntity(BoardReviewDTO.createClientReq req, LocalDateTime startTime, LocalDateTime endTime);
+    @Mapping(target="startTime", expression="java(BoardReviewDTO.timeFormatter(req.getStartTime()))")
+    @Mapping(target="endTime", expression="java(BoardReviewDTO.timeFormatter(req.getEndTime()))")
+    Board toBoardEntity(BoardReviewDTO.createClientReq req);
 
     clientRes toBoardResponseDTO(Board board);
 

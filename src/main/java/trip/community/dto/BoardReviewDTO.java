@@ -2,6 +2,7 @@ package trip.community.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import java.time.format.DateTimeFormatter;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,19 +34,11 @@ public class BoardReviewDTO {
         //private LocalDateTime endTime;
         private String endTime;
 
-//        public LocalDateTime startTimeFormat(){
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//            return LocalDateTime.parse(this.startTime, formatter);
-//        }
-//        public LocalDateTime endTimeFormat(){
-//            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-//            return LocalDateTime.parse(this.endTime, formatter);
-//        }
-
-        public Board toBoardEntity(LocalDateTime startTime, LocalDateTime endTime){
-            return BoardMapper.INSTANCE.toBoardEntity(this, startTime, endTime);
+        public Board toBoardEntity(){
+            return BoardMapper.INSTANCE.toBoardEntity(this);
         }
     }
+
 
     @Getter
     @Setter
@@ -68,5 +61,10 @@ public class BoardReviewDTO {
 
         @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
         private LocalDateTime endTime;
+    }
+
+    public static LocalDateTime timeFormatter(String inputTime){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return LocalDateTime.parse(inputTime, formatter);
     }
 }
