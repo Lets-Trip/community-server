@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import java.util.List;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import trip.community.util.StringListConverter;
 
 
 @Entity
@@ -32,10 +34,10 @@ public class Board extends BaseTime {
 
     @Column(columnDefinition = "varchar(20)")
     private String region;
+    @Convert(converter = StringListConverter.class)
+    private List<String> imageUrl;
 
-    private String imageUrl;
-
-    public void setBoard(String title, String content, String region, String imageUrl){
+    public void setBoard(String title, String content, String region, List<String> imageUrl){
         this.title = title;
         this.content = content;
         this.region = region;
