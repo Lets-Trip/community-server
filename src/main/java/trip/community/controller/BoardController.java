@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import trip.community.dto.BoardRequestDTO;
-import trip.community.dto.BoardResponseDTO;
+import trip.community.dto.BoardReviewDTO;
+import trip.community.dto.BoardReviewDTO.clientRes;
 import trip.community.service.BoardService;
 
 import java.util.List;
@@ -20,8 +20,8 @@ public class BoardController {
     private final BoardService boardService;
 
     @GetMapping("/boards")
-    public ResponseEntity<List<BoardResponseDTO>> getBoardList(){
-        List<BoardResponseDTO> boardRes = boardService.findBoardList();
+    public ResponseEntity<List<clientRes>> getBoardList(){
+        List<clientRes> boardRes = boardService.findBoardList();
 
         return ResponseEntity
                 .status(HttpStatus.OK)
@@ -29,37 +29,37 @@ public class BoardController {
     }
 
     @GetMapping("/boards/{boardId}")
-    public ResponseEntity<BoardResponseDTO> getBoard(
+    public ResponseEntity<clientRes> getBoard(
             @PathVariable Long boardId
     )
     {
-        BoardResponseDTO boardRes = boardService.findBoard(boardId);
+        clientRes boardRes = boardService.findBoard(boardId);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(boardRes);
     }
 
     @PostMapping("/boards")
-    public ResponseEntity<BoardResponseDTO> createBoard(
-            @RequestBody BoardRequestDTO.boardReq boardReq
+    public ResponseEntity<clientRes> createBoard(
+            @RequestBody BoardReviewDTO.createClientReq boardReq
             ){
 
 
         System.out.println(boardReq.getStartTime());
         System.out.println(boardReq.getEndTime());
-        BoardResponseDTO boardRes = boardService.create(boardReq);
+        clientRes boardRes = boardService.create(boardReq);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(boardRes);
     }
 
     @PutMapping("/boards/{boardId}")
-    public ResponseEntity<BoardResponseDTO> updateBoard(
+    public ResponseEntity<clientRes> updateBoard(
             @PathVariable Long boardId,
-            @RequestBody BoardRequestDTO.boardReq boardReq
+            @RequestBody BoardReviewDTO.createClientReq boardReq
     )
     {
-        BoardResponseDTO boardRes = boardService.update(boardId, boardReq);
+        clientRes boardRes = boardService.update(boardId, boardReq);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(boardRes);
