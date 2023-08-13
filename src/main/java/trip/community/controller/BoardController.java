@@ -1,5 +1,6 @@
 package trip.community.controller;
 
+import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +20,7 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    @Operation(summary = "게시글 리스트 조회")
     @GetMapping("/boards")
     public ResponseEntity<List<clientRes>> getBoardList(){
         List<clientRes> boardRes = boardService.findBoardList();
@@ -28,6 +30,7 @@ public class BoardController {
                 .body(boardRes);
     }
 
+    @Operation(summary = "게시글 단일 조회")
     @GetMapping("/boards/{boardId}")
     public ResponseEntity<clientRes> getBoard(
             @PathVariable Long boardId
@@ -39,6 +42,7 @@ public class BoardController {
                 .body(boardRes);
     }
 
+    @Operation(summary = "게시글 생성")
     @PostMapping("/boards")
     public ResponseEntity<clientRes> createBoard(
             @RequestBody BoardReviewDTO.createClientReq boardReq
@@ -53,6 +57,7 @@ public class BoardController {
                 .body(boardRes);
     }
 
+    @Operation(summary = "게시글 수정")
     @PutMapping("/boards/{boardId}")
     public ResponseEntity<clientRes> updateBoard(
             @PathVariable Long boardId,
