@@ -52,4 +52,11 @@ public class Board extends BaseTime {
 
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+
+    public void countBoard(){
+        this.views = this.views+1;
+    }
+    public void countLike(){
+        this.likeCnt = this.likeCnt+1;
+    }
 }

@@ -4,8 +4,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import trip.community.mapper.BoardMapper;
 import trip.community.model.Board;
@@ -21,6 +23,8 @@ public class BoardReviewDTO {
     @Getter
     @Builder
     @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
     public static class createClientReq {
         private String title;
         private String content;
@@ -45,9 +49,11 @@ public class BoardReviewDTO {
     @Setter
     @JsonInclude(JsonInclude.Include.NON_NULL)
     public static class clientRes {
+        private Long boardId;
         private String title;
         private String content;
         private String region;
+        private Long views;
 
         private List<String> imageUrl;
 

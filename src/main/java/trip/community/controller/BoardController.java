@@ -70,6 +70,18 @@ public class BoardController {
                 .body(boardRes);
     }
 
+    @Operation(summary = "게시글 추천")
+    @PutMapping("/boards/{boardId}/like")
+    public ResponseEntity<Long> likeBoard(
+        @PathVariable Long boardId
+    )
+    {
+        Long boardRes = boardService.like(boardId);
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(boardRes);
+    }
+
     @GetMapping
     public ResponseEntity<String> test(){
         return ResponseEntity

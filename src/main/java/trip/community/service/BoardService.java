@@ -20,9 +20,12 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
+    private final AsyncService asyncService;
+
     @Transactional(readOnly = true)
     public clientRes findBoard(Long boardId){
         Board board = boardRepository.findById(boardId).orElseThrow(() -> new RuntimeException("Can't not find board"));
+        asyncService.addViews(board);
         clientRes resDTO = BoardMapper.INSTANCE.toBoardResponseDTO(board);
         return resDTO;
     }
@@ -47,6 +50,15 @@ public class BoardService {
         board.setBoard(req.getTitle(), req.getContent(), req.getRegion(), req.getImageUrl());
         clientRes resDTO = BoardMapper.INSTANCE.toBoardResponseDTO(board);
         return resDTO;
+    }
+
+    @Transactional
+    public Long like(Long boardId){
+        Board board = boardRepository.findById(boardId).orElseThrow(() -> new RuntimeException("board Not Found"));
+        board.countLike();
+        Board res = boardRepository.saveAndFlush(board);
+        Long likeCnt = res.getLikeCnt();
+        return likeCnt;
     }
 
 }
