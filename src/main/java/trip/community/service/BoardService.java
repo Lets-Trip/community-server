@@ -20,9 +20,12 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
+    private final AsyncService asyncService;
+
     @Transactional(readOnly = true)
     public clientRes findBoard(Long boardId){
         Board board = boardRepository.findById(boardId).orElseThrow(() -> new RuntimeException("Can't not find board"));
+        asyncService.addViews(board);
         clientRes resDTO = BoardMapper.INSTANCE.toBoardResponseDTO(board);
         return resDTO;
     }
