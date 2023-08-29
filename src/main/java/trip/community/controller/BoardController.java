@@ -20,6 +20,15 @@ public class BoardController {
 
     private final BoardService boardService;
 
+    @Operation(summary = "베스트 게시글 리스트 조회")
+    @GetMapping("/boards-best")
+    public ResponseEntity<List<clientRes>> getBestBoardList()
+    {
+        List<clientRes> boardRes = boardService.findTop20List();
+        return ResponseEntity
+            .status(HttpStatus.OK)
+            .body(boardRes);
+    }
     @Operation(summary = "게시글 리스트 조회")
     @GetMapping("/boards")
     public ResponseEntity<List<clientRes>> getBoardList(){

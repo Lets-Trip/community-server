@@ -23,6 +23,14 @@ public class BoardService {
     private final AsyncService asyncService;
 
     @Transactional(readOnly = true)
+    public List<clientRes> findTop20List(){
+        List<Board> boards = boardRepository.findTop20ByOrderByLikeCntDesc();
+        
+        List<clientRes> resDto = boards.stream().map(BoardMapper.INSTANCE::toBoardResponseDTO).toList();
+        return resDto;
+    }
+
+    @Transactional(readOnly = true)
     public clientRes findBoard(Long boardId){
         Board board = boardRepository.findById(boardId).orElseThrow(() -> new RuntimeException("Can't not find board"));
         asyncService.addViews(board);
