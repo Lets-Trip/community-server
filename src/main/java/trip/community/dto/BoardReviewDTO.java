@@ -54,6 +54,8 @@ public class BoardReviewDTO {
         private String content;
         private String region;
         private Long views;
+        private Long likeCnt;
+
 
         private List<String> imageUrl;
 
