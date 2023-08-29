@@ -21,6 +21,9 @@ spring:
         use_sql_comments: true
 #        dialect: org.hibernate.dialect.MariaDB103Dialect
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 logging:
   level:
     root: info
