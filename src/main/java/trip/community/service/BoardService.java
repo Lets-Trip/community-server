@@ -52,4 +52,13 @@ public class BoardService {
         return resDTO;
     }
 
+    @Transactional
+    public Long like(Long boardId){
+        Board board = boardRepository.findById(boardId).orElseThrow(() -> new RuntimeException("board Not Found"));
+        board.countLike();
+        Board res = boardRepository.saveAndFlush(board);
+        Long likeCnt = res.getLikeCnt();
+        return likeCnt;
+    }
+
 }
