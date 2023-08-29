@@ -10,4 +10,6 @@ import java.util.List;
 @Repository
 public interface BoardRepository extends JpaRepository<Board, Long> {
     List<Board> findAllByOrderByCreatedAtAsc();
+
+    List<Board> findTop20ByOrderByLikeCntDesc();
 }
