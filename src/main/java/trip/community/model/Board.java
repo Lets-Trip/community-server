@@ -24,6 +24,8 @@ public class Board extends BaseTime {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long boardId;
 
+    private Long userId;
+
     private String title;
 
     @Column(columnDefinition = "varchar(1000)")
@@ -34,15 +36,10 @@ public class Board extends BaseTime {
 
     @Column(columnDefinition = "varchar(20)")
     private String region;
+
+    @Column(columnDefinition = "varchar(1000)")
     @Convert(converter = StringListConverter.class)
     private List<String> imageUrl;
-
-    public void setBoard(String title, String content, String region, List<String> imageUrl){
-        this.title = title;
-        this.content = content;
-        this.region = region;
-        this.imageUrl = imageUrl;
-    }
 
     @Builder.Default
     private Long views = 0L;
@@ -52,6 +49,13 @@ public class Board extends BaseTime {
 
     private LocalDateTime startTime;
     private LocalDateTime endTime;
+
+    public void setBoard(String title, String content, String region, List<String> imageUrl){
+        this.title = title;
+        this.content = content;
+        this.region = region;
+        this.imageUrl = imageUrl;
+    }
 
     public void countBoard(){
         this.views = this.views+1;
